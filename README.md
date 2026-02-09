@@ -196,8 +196,9 @@ make migrate-fresh  # Fresh migrations + seeds
 
 ## 📚 Documentation
 
-- [Task Instructions](docs/Instructions.md) - Original challenge requirements
-- [Postman Collection](docs/Lumen_Loan_API.postman_collection.json) - API endpoints
+- [Task Instructions](docs/Instructions.md) - Original challenge requirements and objectives
+- [Docker Setup Guide](docs/README-DOCKER.md) - Complete Docker installation and usage guide
+- [Postman Collection](docs/Lumen_Loan_API.postman_collection.json) - Ready-to-use API endpoint collection
 
 ## 🤝 Contributing
 
