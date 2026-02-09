@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "loan-api-collection",
 		"name": "Lumen Loan API",
-		"description": "Installment Loan Lifecycle API - Fintech Recruitment Task",
+		"description": "Installment Loan Lifecycle API - Complete loan management system with creation, approval, and repayment tracking",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
