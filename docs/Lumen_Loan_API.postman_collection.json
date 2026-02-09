@@ -1,0 +1,156 @@
+{
+	"info": {
+		"_postman_id": "loan-api-collection",
+		"name": "Lumen Loan API",
+		"description": "Installment Loan Lifecycle API - Fintech Recruitment Task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Loan",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\": 1000,\n    \"term\": 6\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/loans",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"loans"
+					]
+				},
+				"description": "Creates a new loan with status \"Created\" (status=1). No installments are generated at this stage."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Loan",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/loans/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"loans",
+						"1"
+					]
+				},
+				"description": "Retrieves a loan with its installments and payments. Shows open_debt calculation."
+			},
+			"response": []
+		},
+		{
+			"name": "Approve Loan",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/loans/1/approve",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"loans",
+						"1",
+						"approve"
+					]
+				},
+				"description": "Approves a loan in status \"Created\". Changes status to \"Open\" (status=2) and generates installment schedule based on 10% annual interest rate."
+			},
+			"response": []
+		},
+		{
+			"name": "Add Payment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\": 171.56\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/loans/1/addPayment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"loans",
+						"1",
+						"addPayment"
+					]
+				},
+				"description": "Adds a payment to an \"Open\" loan. Payment amount must be > 0 and cannot exceed open_debt. When all installments are paid, status changes to \"Repaid\" (status=3)."
+			},
+			"response": []
+		},
+		{
+			"name": "Debug - List Routes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/routes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"routes"
+					]
+				},
+				"description": "Debug endpoint - shows all registered routes in the application."
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}

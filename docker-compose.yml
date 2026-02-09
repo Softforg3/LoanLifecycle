@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lumen_app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    networks:
+      - lumen
+
+  webserver:
+    image: nginx:alpine
+    container_name: lumen_webserver
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - lumen
+
+  db:
+    image: mysql:5.7
+    container_name: lumen_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: lumen
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: lumen
+      MYSQL_USER: lumen
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - lumen
+
+networks:
+  lumen:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
